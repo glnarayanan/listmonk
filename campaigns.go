@@ -144,6 +144,8 @@ func handlePreviewCampaign(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, "Invalid ID.")
 	}
 
+	time.Sleep(1 * time.Second)
+
 	err := app.queries.GetCampaignForPreview.Get(camp, id)
 	if err != nil {
 		if err == sql.ErrNoRows {

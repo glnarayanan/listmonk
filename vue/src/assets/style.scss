@@ -1,0 +1,291 @@
+/* Import Bulma to set variables */
+@import "~bulma/sass/utilities/_all";
+
+$body-family: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+$body-size: 15px;
+$primary: #7f2aff;
+$green: #4caf50;
+$turquoise: $green;
+$red: #ff5722;
+$link: $primary;
+$input-placeholder-color: $black-ter;
+
+$colors: map-merge($colors, (
+    "turquoise": ($green, $green-invert),
+    "green": ($green, $green-invert),
+    "success": ($green, $green-invert),
+    "danger": ($red, $green-invert),
+));
+
+$sidebar-box-shadow: none;
+$sidebar-width: 240px;
+$menu-item-active-background-color: $white-bis;
+$menu-item-active-color: $primary;
+
+/* Buefy */
+$modal-background-background-color: rgba(0, 0, 0, .30);
+$speed-slow: 25ms !default;
+$speed-slower: 50ms !default;
+
+/* Import full Bulma and Buefy to override styles. */
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+html, body {
+  height: 100%;
+}
+
+code {
+  color: $grey;
+}
+
+ul.no {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Two column sidebar+body layout */
+#app {
+  display: flex;
+  flex-direction: row;
+  
+  > .sidebar {
+    flex-shrink: 1;
+    box-shadow: 0 0 5px #eee;
+    border-right: 1px solid #eee;
+  }
+  > .content {
+    margin: 30px 30px 30px 45px;
+    flex-grow: 1;
+  }
+}
+
+.b-sidebar {
+  .sidebar-content {
+    border-right: 1px solid #eee;
+    padding: 15px;
+  }
+  .sidebar-content .menu-list > li {
+    margin-bottom: 15px;
+  }
+  .logo {
+    margin-bottom: 30px;
+  }
+  .favicon {
+    display: none;
+  }
+}
+
+/* Table colors and padding */
+.content table {
+  thead th {
+    background: $white-bis;
+    border-bottom: 1px solid $grey-lighter;
+  }
+  thead th, tbody td {
+    padding: 10px;
+  }
+  .actions a {
+    margin: 0 10px;
+    display: inline-block;
+  }
+}
+
+/* Modal */
+.modal {
+  z-index: 100;
+}
+.modal-card-head {
+  display: block;
+}
+.modal .modal-card-foot {
+  justify-content: flex-end;
+}
+.modal .modal-close.is-large {
+  display: none;
+}
+
+/* Fix for button primary colour. */
+.button.is-primary {
+  background: $primary;
+  &:hover {
+    background: darken($primary, 15%);
+  }
+  &:disabled {
+    background: $grey-light;
+  }
+}
+
+.autocomplete .dropdown-content {
+  background-color: $white-bis;
+}
+
+.help {
+  color: $grey;
+}
+
+/* Tags */
+.tag {
+  min-width: 75px;
+  letter-spacing: 0.02rem;
+
+  &.private, &.draft {
+    $color: #ed7b00;
+    color: $color;
+    background: #fff7e6;
+    border: 1px solid lighten($color, 37%);
+    box-shadow: 1px 1px 0 lighten($color, 37%);
+  }
+  &.public, &.running {
+    $color: #1890ff;
+    color: $color;
+    background: #e6f7ff;
+    border: 1px solid lighten($color, 37%);
+    box-shadow: 1px 1px 0 lighten($color, 37%);
+  }
+  &.finished, &.enabled {
+    $color: #50ab24;
+    color: $color;
+    background: #f6ffed;
+    border: 1px solid lighten($color, 45%);
+    box-shadow: 1px 1px 0 lighten($color, 45%);
+  }
+  &.blacklisted {
+    $color: #f5222d;
+    color: $color;
+    background: #fff1f0;
+    border: 1px solid lighten($color, 45%);
+    box-shadow: 1px 1px 0 lighten($color, 45%);
+  } 
+
+  sup {
+    font-weight: $weight-semibold;
+    letter-spacing: 0.03em;
+  }
+  &.unsubscribed sup {
+    color: #fa8c16;
+  }
+  &.confirmed sup {
+    color: #52c41a;
+  }
+  
+  &:not(body) .icon:first-child:last-child {
+    margin-right: 1px;
+  }
+}
+
+/* Lists page */
+section.lists {
+  td .tag {
+    min-width: 65px;
+  }
+}
+
+/* Subscribers page */
+.subscribers-controls {
+  padding-bottom: 15px;
+}
+.subscribers-bulk {
+  .actions a {
+    display: inline-block;
+    margin-right: 30px;
+  }
+}
+
+/* Import page */
+section.import {
+  .wrap {
+    max-width: 900px;
+  }
+  .delimiter input {
+    max-width: 100px;
+  }
+  .status {
+    padding: 60px;
+  }
+  .logs {
+    max-height: 240px;
+  }
+}
+
+/* Campaigns page */
+section.campaigns {
+  table tbody td {
+    .tags {
+      margin-top: 5px;
+    }
+
+    p {
+      margin: 0 !important;
+    }
+
+    &.lists ul {
+      font-size: $size-7;
+      list-style-type: circle;
+
+      a {
+        color: $grey-dark;
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+
+    .fields {
+      font-size: $size-7;
+      label {
+        font-weight: bold;
+        text-align: right;
+        min-width: 50px;
+        margin-right: 10px;
+        display: inline-block;
+      }
+    }
+
+    &.draft {
+      color: $grey-lighter;
+    }
+  }
+}
+
+/* Campaign / template preview popup */
+.preview {
+  #iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+  }
+  
+  /* Contain the spinner background in the content area. */
+  position: relative;
+}
+
+@media screen and (max-width: 1023px) {
+  /* Hide sidebar menu captions on mobile */
+  .b-sidebar .sidebar-content.is-mini-mobile {
+    .menu-list li {
+      margin-bottom: 30px;
+
+      span:nth-child(2) {
+        display: none;
+      }
+      .icon.is-small {
+        scale: 1.4;
+      }
+    }
+    .logo {
+      text-align: center;
+      .full {
+        display: none;
+      }
+      .favicon {
+        display: block;
+      }
+      .version {
+        display: none;
+      }
+    }
+  }
+}
